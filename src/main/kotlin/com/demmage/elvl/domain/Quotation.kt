@@ -3,7 +3,6 @@ package com.demmage.elvl.domain
 import com.fasterxml.jackson.annotation.JsonProperty
 import lombok.Data
 import lombok.NoArgsConstructor
-import org.springframework.boot.context.properties.bind.DefaultValue
 import javax.persistence.*
 
 @Data
@@ -11,14 +10,14 @@ import javax.persistence.*
 @Table(name = "quotations")
 @NoArgsConstructor
 data class Quotation(
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        var id: Long,
-        @JsonProperty("isin")
-        @Column(length = 12)
-        var isin: String,
-        @JsonProperty("bid")
-        var bid: Float,
-        @JsonProperty("ask")
-        var ask: Float
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long,
+    @JsonProperty("isin")
+    @Column(length = 12)
+    var isin: String,
+    @JsonProperty("bid")
+    var bid: Float,
+    @JsonProperty("ask")
+    var ask: Float
 )

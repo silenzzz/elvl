@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service
 
 @Service
 class QuotationService @Autowired constructor(
-        val quotationRepo: QuotationRepo,
-        val elvlRepo: ElvlRepo
+    val quotationRepo: QuotationRepo,
+    val elvlRepo: ElvlRepo
 ) {
 
     fun acceptQuotation(quotation: Quotation) {
-        if (quotation.bid > quotation.ask)
+        if (quotation.bid >= quotation.ask)
             throw BadQuotationException("Bid must be less than ask")
         else if (quotation.isin.length != 12)
             throw BadQuotationException("Isin length must be equal to 12 characters")

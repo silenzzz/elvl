@@ -2,10 +2,8 @@ package com.demmage.elvl.controller
 
 import com.demmage.elvl.domain.Quotation
 import com.demmage.elvl.service.QuotationService
-import org.junit.jupiter.api.MethodOrderer
-import org.junit.jupiter.api.Order
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestMethodOrder
+import com.demmage.elvl.service.exception.BadQuotationException
+import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -52,5 +50,19 @@ internal class QuotationControllerTest @Autowired constructor(
                             "}"
                 )
             )
+    }
+
+    @Test
+    fun shouldThrowBadQuotationExceptionThenQuotationWithSimilarAskAndBidGiven() {
+        assertThrows<BadQuotationException> {
+            quotationService.acceptQuotation(Quotation(999L, "RU000N23GXA9", 100.2F, 100.2F))
+        }
+    }
+
+    @Test
+    fun shouldThrowBadQuotationExceptionThenQuotationMissingAskAndBid() {
+        assertThrows<BadQuotationException> {
+            quotationService.acceptQuotation(Quotation(999L, "RU000N23GXA9", 0F, 0F))
+        }
     }
 }
