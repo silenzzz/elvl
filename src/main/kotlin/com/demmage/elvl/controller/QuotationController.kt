@@ -21,6 +21,14 @@ class QuotationController @Autowired constructor(
         return ResponseEntity(HttpStatus.OK)
     }
 
+    @PostMapping("/putAll")
+    fun acceptQuotations(@RequestBody quotations: List<Quotation>): ResponseEntity<String> {
+        for (quotation in quotations) {
+            quotationService.acceptQuotation(quotation)
+        }
+        return ResponseEntity(HttpStatus.OK)
+    }
+
     @GetMapping("{isin}")
     fun getElvlByIsin(@PathVariable isin: String): ResponseEntity<Elvl> {
         val quotation = quotationService.getElvlByIsin(isin)

@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ElvlApplication
 
 fun main(args: Array<String>) {
-	runApplication<ElvlApplication>(*args)
+    runApplication<ElvlApplication>(*args)
 }
